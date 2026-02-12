@@ -1,0 +1,84 @@
+<!-- Este archivo contiene el código HTML semántico para una página de inicio de un sitio web -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Microsoft Full Stack Development</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace a la hoja de estilos CSS -->
+    <script src="script.js" defer></script> <!-- Enlace a un archivo JavaScript externo -->
+</head>
+
+<body>
+    <header role="banner" aria-label="Encabezado principal">
+        <nav aria-label="Navegación principal" role="navigation">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#acerca">Acerca de</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main" aria-label="Contenido principal">
+        <section id="inicio">
+            <article>
+                <h1>Bienvenido a Microsoft Full Stack Development</h1>
+                <p>Aprende desarrollo web moderno con las mejores prácticas.</p>
+            </article>
+        </section>
+
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <article>
+                <h3>Desarrollo Frontend</h3>
+                <p>HTML, CSS y JavaScript para interfaces modernas.</p>
+            </article>
+            <article>
+                <h3>Desarrollo Backend</h3>
+                <p>Servidor, bases de datos y APIs.</p>
+            </article>
+        </section>
+
+        <section id="Nuestras habilidades">
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Node.js</li>
+            </ul>
+        </section>
+
+        <form action="/submit" method="post">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Enviar</button>
+        </form >
+        <section id="acerca">
+            <h2>Acerca de Nosotros</h2>
+            <img src="team.jpg" alt="Equipo de desarrolladores trabajando juntos en una oficina moderna">
+            <p>Somos un equipo dedicado a la educación en desarrollo web full-stack.</p>
+        </section>
+
+        <section id="contacto">
+            <h2>Galería</h2>
+            <img src="workspace.jpg" alt="Espacio de trabajo con computadoras y monitores">
+            <img src="coding.jpg" alt="Programador escribiendo código en su computadora">
+            <img src="meeting.jpg" alt="Reunión de equipo discutiendo proyecto de desarrollo">
+        </section>
+        
+        <section id="accesibilidad">
+            <h2>Mejoras de Accesibilidad</h2>
+            <p>Esta página incluye navegación por teclado. Usa Tab para navegar entre enlaces y Enter para acceder.</p>
+        </section>
+        <footer role="contentinfo" aria-label="Pie de página">
+            <p>&copy; 2026 Microsoft Full Stack. Todos los derechos reservados.</p>
+        </footer>
+
+    </main>
+</body>
+</html>
