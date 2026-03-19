@@ -4,6 +4,10 @@
   "private": true,
   "description": "Sitio web estatico con validaciones basicas para CI.",
   "scripts": {
-    "test": "node scripts/validate-site.js"
+    "test": "node scripts/validate-site.js all",
+    "test:assets": "node scripts/validate-site.js assets",
+    "test:html": "node scripts/validate-site.js html",
+    "test:css": "node scripts/validate-site.js css",
+    "test:js": "node scripts/validate-site.js js"
   }
 }

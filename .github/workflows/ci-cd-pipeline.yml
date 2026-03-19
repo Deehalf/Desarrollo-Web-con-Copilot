@@ -1,26 +1,55 @@
 # A GitHub Actions workflow for a Node.js app that installs dependencies, runs tests, and deploys the app
 name: CI/CD Pipeline
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+concurrency:
+  group: ci-cd-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  test:
+    name: Test ${{ matrix.suite }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [assets, html, css, js]
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
       - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
           node-version: '22'
           cache: 'npm'
+          cache-dependency-path: package-lock.json
       - name: Install dependencies
         run: npm ci
       - name: Run tests
-        run: npm test
-      - name: Deploy to production
-        if: github.ref == 'refs/heads/main'
-        run: echo "Deploying to production..." # Replace with actual deployment command
+        run: npm run test:${{ matrix.suite }}
+
+  deploy-preview:
+    name: Deploy preview
+    if: github.event_name == 'pull_request'
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preview deployment
+        run: echo "Deploying preview for PR #${{ github.event.pull_request.number }}..." # Replace with actual preview deployment command
+
+  deploy-production:
+    name: Deploy production
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Production deployment
+        run: echo "Deploying to production..." # Replace with actual production deployment command
 

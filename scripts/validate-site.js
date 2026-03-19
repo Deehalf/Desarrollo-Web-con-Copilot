@@ -53,13 +53,40 @@ function validateJavaScript() {
   ensureIncludes(script, 'fetch(', 'script.js debe realizar al menos una llamada fetch.');
 }
 
-function main() {
+function validateAssets() {
   requiredFiles.forEach(ensureFileExists);
-  validateHtml();
-  validateCss();
-  validateJavaScript();
+}
 
-  console.log('Validacion completada correctamente.');
+function main() {
+  const suite = process.argv[2] || 'all';
+
+  switch (suite) {
+    case 'all':
+      validateAssets();
+      validateHtml();
+      validateCss();
+      validateJavaScript();
+      break;
+    case 'assets':
+      validateAssets();
+      break;
+    case 'html':
+      validateAssets();
+      validateHtml();
+      break;
+    case 'css':
+      validateAssets();
+      validateCss();
+      break;
+    case 'js':
+      validateAssets();
+      validateJavaScript();
+      break;
+    default:
+      throw new Error(`Suite de validacion no soportada: ${suite}`);
+  }
+
+  console.log(`Validacion completada correctamente para la suite: ${suite}.`);
 }
 
 try {
