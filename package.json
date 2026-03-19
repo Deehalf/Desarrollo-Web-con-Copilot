@@ -1,0 +1,9 @@
+{
+  "name": "desarrollo-web-con-copilot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web estatico con validaciones basicas para CI.",
+  "scripts": {
+    "test": "node scripts/validate-site.js"
+  }
+}
